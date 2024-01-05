@@ -5,10 +5,10 @@ const DTwenty = require('./dTwenty');
 
 async function rollDice() {
   try {
-    // Create a list of die types
+    // Create list of die types
     const dieTypes = ['D6', 'D8', 'D20'];
 
-    // Prompt to select the type of die
+    // Prompt to select type of die
     const answers = await inquirer.prompt([
       {
         type: 'list',
@@ -18,10 +18,10 @@ async function rollDice() {
       },
     ]);
 
-    // Get the selected die type
+    // Get selected die type
     const selectedDieType = answers.dieType;
 
-    // Prompt to ask how many of the selected die to roll
+    // Prompt to ask how many of selected die to roll
     const secondAnswers = await inquirer.prompt([
       {
         type: 'number',
@@ -33,10 +33,10 @@ async function rollDice() {
       },
     ]);
 
-    // Get the number of dice to roll
+    // Get number of dice to roll
     const numberOfDice = secondAnswers.numberOfDice;
 
-    // Roll the selected die type
+    // Roll selected die type
     let selectedDie;
     switch (selectedDieType) {
       case 'D6':
@@ -53,7 +53,7 @@ async function rollDice() {
         return;
     }
 
-    // Roll the die the specified number of times
+    // Roll specified number of times
     for (let i = 0; i < numberOfDice; i++) {
       selectedDie.roll();
       console.log(`${selectedDieType} Rolls: ${selectedDie.dieRollValueA}, ${selectedDie.dieRollValueB}`);
@@ -67,5 +67,5 @@ async function rollDice() {
   }
 }
 
-// Call the async function
+
 rollDice();
