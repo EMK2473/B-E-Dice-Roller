@@ -33,8 +33,6 @@ Utilize the command line to create instances of dice, roll them, and then view t
 ## Contributions
 Eric Keeton
 
-*Insert Dad Name Here*
-
 ## Test Commands
 node index.js
 
