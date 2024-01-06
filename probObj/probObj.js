@@ -22,17 +22,33 @@ class ProbabilityObject extends Shape {
       this.rolls.sort((a, b) => a - b);
       return { rolls: this.rolls, totalSum, minRoll: this.rolls[0] };
     };
-    
+
     this.concatAscending = () => {
       this.rolls.sort((a, b) => a - b);
       return this.rolls;
     };
-    
+
     this.concatDescending = () => {
       this.rolls.sort((a, b) => b - a);
       return this.rolls;
     };
 
+    this.calculateOdds = (numberOfDice) => {
+      if (this.sides.length < 1 || numberOfDice < 1) {
+        throw new Error(
+          "Both numberOfSides and numberOfDice must be greater than 0."
+        );
+      }
+
+      const odds = {};
+
+      for (let outcome = 1; outcome <= this.sides.length; outcome++) {
+        const probability = (1 / this.sides.length) * numberOfDice;
+        odds[outcome] = probability;
+      }
+
+      return odds;
+    };
     // Use a constant for the magic number
     const DEGREES_FULL_CIRCLE = 360;
 
@@ -41,7 +57,8 @@ class ProbabilityObject extends Shape {
       const coordinates = [];
 
       for (let i = 0; i < this.sides.length; i++) {
-        let angle = (i * (DEGREES_FULL_CIRCLE / this.sides.length)) % DEGREES_FULL_CIRCLE;
+        let angle =
+          (i * (DEGREES_FULL_CIRCLE / this.sides.length)) % DEGREES_FULL_CIRCLE;
         let x = sideLength * Math.cos((angle * Math.PI) / 180);
         let y = sideLength * Math.sin((angle * Math.PI) / 180);
         coordinates.push([x, y]);

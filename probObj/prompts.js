@@ -41,6 +41,7 @@ const askUser = async () => {
     // creating new instances of Probability Objects
     const myProbabilityObject = new ProbabilityObject(numberOfSides);
     // calling prototype methods
+    const odds = myProbabilityObject.calculateOdds(numberOfDice);
     const polygonCoordinates = myProbabilityObject.generatePolygonCoordinates(numberOfSides);
     const { rolls, totalSum } = myProbabilityObject.calculateSumOfRolls(numberOfDice);
     // looping for each value fo diceRoll
@@ -62,6 +63,7 @@ const askUser = async () => {
     console.log(`Descending order: ${myProbabilityObject.concatDescending()}`);
     console.log("Coordinates of the polygon:");
     console.log(polygonCoordinates);
+    console.log("odds:", odds);
   } catch (error) {
     console.error(error);
   }

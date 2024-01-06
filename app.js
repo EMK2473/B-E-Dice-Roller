@@ -35,7 +35,10 @@ const askUser = async () => {
     const { rolls, totalSum } = myProbabilityObject.calculateSumOfRolls(numberOfDice);
 
     for (let i = 0; i < numberOfDice; i++) {
+        console.log(`Die Roll#${i + 1}: ${rolls[i]}`);
     }
+    console.log("roll results:", rolls);
+    console.table(myProbabilityObject);
   } catch (error) {
     console.error(error);
   }
@@ -52,7 +55,6 @@ class Shape {
       super(numberOfSides);
       this.name = `D${numberOfSides}`;
       this.rolls = [];
-      this.DEGREES_FULL_CIRCLE = 360;
       this.calculateSumOfRolls = (numberOfRolls) => {
         let totalSum = 0;
         for (let i = 0; i < numberOfRolls; i++) {
@@ -77,6 +79,7 @@ class Shape {
       this.generatePolygonCoordinates = () => {
         const sideLength = 3.0;
         const coordinates = [];
+        const DEGREES_FULL_CIRCLE = 360;
   
         for (let i = 0; i < this.sides.length; i++) {
           let angle = (i * (DEGREES_FULL_CIRCLE / this.sides.length)) % DEGREES_FULL_CIRCLE;
@@ -84,11 +87,9 @@ class Shape {
           let y = sideLength * Math.sin((angle * Math.PI) / 180);
           coordinates.push([x, y]);
         }
-  
         return coordinates;
       };
     }
-
     simulateEvent() {
       const randomIndex = Math.floor(Math.random() * this.sides.length);
       return this.sides[randomIndex];
@@ -96,4 +97,3 @@ class Shape {
   }
 
   askUser();
-  
